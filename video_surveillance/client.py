@@ -37,12 +37,14 @@ class Client(object):
     def send2server(self,
                     interval: float = 0.5,
                     image_format: str = '.jpg',
-                    input_path='./test.mp4'):
+                    input_path=None):
         """读摄像头数据 发送给服务器"""
-        camera = cv2.VideoCapture(input_path)
-        # 读取本地视频
-        # camera = cv2.VideoCapture(0)
-        # # 摄像头对象
+        if input_path is None:
+            # 摄像头对象
+            camera = cv2.VideoCapture(0)
+        else:
+            # 读取本地视频
+            camera = cv2.VideoCapture(input_path)
         print('isOpened:', camera.isOpened())
         while camera.isOpened():
             try:
